@@ -2,15 +2,16 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req,res) => {
- res.send('hello world');
+ res.send('hello world!');
 });
 
 app.get('/api/courses' ,(req,res) => {
     res.send([1,2,3]);
    });
 
-
-app.listen(3000,()=> console.log('Listening on port port 3000..'))
+//PORT
+const port = process.env.PORT || 3000;
+app.listen(port,()=> console.log(`Listening on port ${port}..`))
 // app.post()
 // app.put()
 // app.delete()
