@@ -4,19 +4,17 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start" :"nodemon app.js",
-    "dev" :"SET NODE_ENV=DEVELOPMENT& nodemon app.js",
-    "prod" :"SET NODE_ENV=PRODUCTION& nodemon app.js",
-
-
-    
+    "start": "nodemon app.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon app.js",
+    "prod": "SET NODE_ENV=PRODUCTION& nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.5.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
