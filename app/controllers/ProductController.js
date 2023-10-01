@@ -1,13 +1,18 @@
 const Product = require('../models/Product')
-const express = require('express');
-const app = express();
-
-app.use(express.json());
+const APIFeatures = require('./../helpers/ApiHelper');
 
 
 exports.getProducts = async (req,res,next) =>{
     try {
-        const products =  await Product.find({})
+        const features = new APIFeatures(Product.find(), req.query)
+            .filter()
+            .sort()
+            .limitFields()
+            .paginate()
+            .filterByLocation();
+        const products = await features.query;
+
+        // const products =  await Product.find()
         res.status(200).json({
             status:'success',
             results: products.length,
@@ -23,6 +28,12 @@ exports.getProducts = async (req,res,next) =>{
 exports.getProduct = async (req,res,next) =>{
     try {
         const product =  await Product.findById(req.params.id)
+        if (!product) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'Product not found'
+            });
+        }
         res.status(200).json({
             status:'success',
             data:{
@@ -39,12 +50,7 @@ exports.getProduct = async (req,res,next) =>{
 
 exports.storeProduct = async (req,res,next) =>{
     try {
-        const newProduct =  await  Product.create({
-            name:req.body.name,
-            code:req.body.code,
-            price:req.body.price,
-            coverImage:req.body.coverImage
-        })
+        const newProduct =  await  Product.create(req.body)
         res.status(201).json({
             status:'success',
             data:{
@@ -86,7 +92,28 @@ exports.deleteProduct = async (req,res,next) =>{
              new: true,
              runValidators:true
          });
-         res.status(200).json({
+         if (!product) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'Product not found'
+            });
+        }
+         res.status(204).json({
+             status:'success',
+         });
+    }catch(err){
+         res.status(404).json({
+             status:'failed',
+             message: err
+         });
+    }
+ 
+ }
+
+ exports.deleteAllProducts = async (req,res,next) =>{
+    try{
+         const product = await Product.deleteMany();
+         res.status(204).json({
              status:'success',
          });
     }catch(err){
@@ -97,3 +124,5 @@ exports.deleteProduct = async (req,res,next) =>{
     }
  
  }
+
+ 

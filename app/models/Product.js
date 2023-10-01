@@ -17,10 +17,26 @@ const ProductSchema = mongoose.Schema({
             message: 'The `code` field must contain exactly 7 letters or numbers.'
         }
     },
+    coordinates: {
+        type: {
+          type: String,
+          enum: ['Point'],
+          required: true,
+        },
+        coordinates: {
+          type: [Number],
+          required: true,
+        },
+      },
     price:{
         required:[true,'The field `price` cannot be empty'],
         type: Number,
-        unique: true
+        unique: false,
+    },
+    quantity:{
+        required:[true,'The field `quantity` cannot be empty'],
+        type: Number,
+        unique:false,
     },
     description:{
         type:String,
@@ -36,6 +52,8 @@ const ProductSchema = mongoose.Schema({
         default:Date.now()
     }
 })
+
+ProductSchema.index({ coordinates: '2dsphere' });
 
 const Product = mongoose.model('Product',ProductSchema)
 

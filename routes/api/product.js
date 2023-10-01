@@ -5,7 +5,8 @@ const router = express.Router();
 const Products =require('../../app/controllers/ProductController')
 
 router.route('/').get(Products.getProducts)
-                .post(Products.storeProduct);
+                .post(Products.storeProduct)
+                .delete(Products.deleteAllProducts);
 router.route('/:id').get(Products.getProduct)
                     .patch(Products.updateProduct)
                     .delete(Products.deleteProduct);
