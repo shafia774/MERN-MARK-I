@@ -53,10 +53,8 @@ class APIFeatures {
   filterByLocation() {
     if (this.queryParameters.coordinates && this.queryParameters.range) {
       const [givenLongitude, givenLatitude] = this.queryParameters.coordinates.split(',').map(parseFloat);
-
-      console.log(this.queryParameters.range)
       const range = this.queryParameters.range*1000;
-
+      
       this.query = this.query.find({
         coordinates: {
           $nearSphere: {
