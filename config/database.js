@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 
 const database = async () =>{
   try{
-    const con = await mongoose.connect("mongodb://127.0.0.1:27017/mern")
+    const con = await mongoose.connect(process.env.MONGODB_URL)
     console.log(`mongodb connected: ${con.connection.host}` )
   }catch(error){
     console.error(error)

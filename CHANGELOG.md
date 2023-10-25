@@ -6,6 +6,10 @@
 - mongodb
 - helpers
 
+## V-1.1.0
+
+- Error Handling
+
 
 
 
