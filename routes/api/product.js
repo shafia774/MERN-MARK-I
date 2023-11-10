@@ -1,14 +1,15 @@
 const express = require('express');
+const ProductController =require('../../app/controllers/ProductController')
+const AuthController =require('../../app/controllers/AuthController')
+
 const router = express.Router();
 
-// const {getProducts,storeProducts} =require('../../app/controllers/ProductController')
-const Products =require('../../app/controllers/ProductController')
 
-router.route('/').get(Products.getProducts)
-                .post(Products.storeProduct)
-                .delete(Products.deleteAllProducts);
-router.route('/:id').get(Products.getProduct)
-                    .patch(Products.updateProduct)
-                    .delete(Products.deleteProduct);
+router.route('/').get(ProductController.getProducts)
+                .post(AuthController.protect ,ProductController.storeProduct)
+                .delete(ProductController.deleteAllProducts);
+router.route('/:id').get(ProductController.getProduct)
+                    .patch(ProductController.updateProduct)
+                    .delete(ProductController.deleteProduct);
 
 module.exports = router
