@@ -10,6 +10,10 @@
 
 - Error Handling
 
+## V-1.2.0
+
+- Auth and Security
+
 
 
 

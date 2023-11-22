@@ -5,8 +5,12 @@ const AuthController =require('../../app/controllers/AuthController')
 const router = express.Router();
 
 
-router.route('/').get(ProductController.getProducts)
-                .post(AuthController.protect ,ProductController.storeProduct)
+router.route('/').get(AuthController.protect,
+                        AuthController.restrictTo('admin'),
+                        ProductController.getProducts)
+                .post(AuthController.protect,
+                        AuthController.restrictTo('admin'),
+                        ProductController.storeProduct)
                 .delete(ProductController.deleteAllProducts);
 router.route('/:id').get(ProductController.getProduct)
                     .patch(ProductController.updateProduct)

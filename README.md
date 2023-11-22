@@ -2,7 +2,7 @@
 
 A component for express prjects
 
-Current Version 1.1
+Current Version 1.2
 
 ## New Features
 
