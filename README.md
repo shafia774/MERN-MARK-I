@@ -12,8 +12,15 @@ Auth
 
 ```
  npm run setup
+
+```
+set up env file accordingly
+ 
+```
  npm run dev
 
 ```
+
+
 
 
