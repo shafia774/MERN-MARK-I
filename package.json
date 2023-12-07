@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "setup": "npm install && cp .env.example .env && npm install --prefix resources",
     "start": "nodemon server.js",
     "server": "SET NODE_ENV=DEVELOPMENT& nodemon server.js",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon server.js",
