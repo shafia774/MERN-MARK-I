@@ -1,21 +1,22 @@
-import {Card} from 'react-bootstrap'
-import logo from '../assets/logo.svg'
+import {Card} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import logo from '../assets/logo.svg';
 
-const Product = () =>{
+const Product = ({ product }) =>{
     return(
         <Card className='my-3 p-3 rounded'>
-            <a>
-                <Card.Img  src={logo} variant='top'/>
-            </a>
+            <Link to={`/product/${product._id}`}>
+                <Card.Img src={product.image || logo} variant='top' />
+            </Link>
             <Card.Body>
-                <a >
-                    <Card.Title as='div'>
-                        <strong>Product Name</strong>
-                    </Card.Title>
-                </a>
+            <Card.Title as='div'>
+                <strong>{product.name}</strong>
+            </Card.Title>
 
-                <Card.Text as='h3'>
-                    33
+
+                <Card.Text as='div'>
+                    <p>{product.price}</p>
+                    <p>{product.quantity}</p>
                 </Card.Text>
             </Card.Body>
         </Card>

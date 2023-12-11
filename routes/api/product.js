@@ -5,9 +5,7 @@ const AuthController =require('../../app/controllers/AuthController')
 const router = express.Router();
 
 
-router.route('/').get(AuthController.protect,
-                        AuthController.restrictTo('admin'),
-                        ProductController.getProducts)
+router.route('/').get(ProductController.getProducts)
                 .post(AuthController.protect,
                         AuthController.restrictTo('admin'),
                         ProductController.storeProduct)
