@@ -1,10 +1,9 @@
  import {createSlice} from '@reduxjs/toolkit';
-import { json } from 'express';
 
- const initialState ={
-    userInfo: localStorage.getItem('userInfo') ? 
-    JSON.parse(localStorage.getItem(userInfo)) : null,
- }
+ const initialState = {
+    userInfo: localStorage.getItem('userInfo') ?
+      JSON.parse(localStorage.getItem('userInfo')) : null,
+ };
 
  const authSlice = createSlice({
     name:'auth',
@@ -13,7 +12,7 @@ import { json } from 'express';
         setCredentials: (state, action) => {
             state.userInfo =action.payload;
             localStorage.setItem('userInfo',
-            json.stringify(action.payload));
+            JSON.stringify(action.payload));
         }
     }
  }); 
