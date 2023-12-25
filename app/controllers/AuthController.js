@@ -42,7 +42,7 @@ exports.signUp =catchAsync( async (req,res,next) =>{
         email: req.body.email,
         password: req.body.password,
         confirmPassword: req.body.confirmPassword,
-        role: req.body.role
+        role: "user"
       });
 
       createSendToken(newUser, 201, res);
@@ -65,6 +65,16 @@ exports.logIn = catchAsync(async (req, res, next) => {
   
     // 3) If everything ok, send token to client
     createSendToken(user, 200, res);
+});
+
+exports.logOut = catchAsync(async (req, res, next) => {
+
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000), // expires in 10 seconds
+    httpOnly: true,
+  });
+
+  res.status(200).json({ status: 'success' });
 });
 
 exports.protect = catchAsync(async (req, res, next) => {

@@ -6,10 +6,11 @@ const handleCastErrorDB = err => {
 };
 
 const handleDuplicateFieldsDB = err => {
-   const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
-   console.log(value);
+   const value = err.keyValue.email;
+   const key = Object.keys(err.keyPattern)[0];
+   // console.log(err);
 
-   const message = `Duplicate field value: ${value}. Please use another value!`;
+   const message = `The ${key} "${value}" is already in use. Please use a different ${key}.`;
    return new ErrorCall(message, 400);
 };
 

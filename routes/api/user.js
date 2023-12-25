@@ -6,7 +6,9 @@ const BruteForce =require('../../app/helpers/BruteForcePreventionHelper')
 const router = express.Router();
 
 router.post('/signup', AuthController.signUp);
-router.post('/login', BruteForce.prevent ,AuthController.logIn);
+router.post('/login', BruteForce.prevent, AuthController.logIn);
+// router.post('/logout',  AuthController.protect ,AuthController.logOut);
+router.post('/logout', AuthController.logOut);
 
 router.post('/forgotPassword', AuthController.forgotPassword);
 router.patch('/resetPassword/:token', AuthController.resetPassword);

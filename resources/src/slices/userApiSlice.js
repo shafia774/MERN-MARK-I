@@ -3,13 +3,31 @@ import { apiSlice } from "./apliSlice";
 
 export const userApiSlice = apiSlice.injectEndpoints({
     endpoints: (buiilder) => ({
-        login: buiilder.query({
+        login: buiilder.mutation({
             query: (data) => ({
-                url: USER_URL/login,
+                url: `${USER_URL}/login`,
+                method: 'POST',
+                body: data
             }),
-            keepUnusedDataFor:5
-        })
+        }),
+        register: buiilder.mutation({
+            query: (data) => ({
+                url: `${USER_URL}/signup`,
+                method: 'POST',
+                body: data
+            }),
+        }),
+        logout: buiilder.mutation({
+            query: (data) => (
+                {
+                url: `${USER_URL}/logout`,
+                method: 'POST',
+                headers: {
+                    Authorization: data.token ? `Bearer ${data.token}` : '', 
+                    },
+            }),
+        }),
     }),
 });
 
-export const {useLoginMutation, } =userApiSlice;
+export const {useLoginMutation, useLogoutMutation, useRegisterMutation} = userApiSlice;
