@@ -11,6 +11,19 @@ import { toast } from 'react-toastify';
 const LoginScreen = () => {
     const[email,setEmail]=useState('');
     const[password,setPassword]=useState('');
+    
+// method 1
+    // const [authentication,setAuthentication] = useState({
+    //     email : '',
+    //     password : ''
+    // })
+
+    // method 2
+    // const handleInput = (e) => {
+    //         //two way binding
+    // }
+
+
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -50,6 +63,7 @@ const LoginScreen = () => {
             <Form.Group controlId='email' className='my-3'>
                 <Form.Label>Email Address</Form.Label>
                 <Form.Control type='email'
+                name="email"
                 placeholder='Enter your email address'
                 value={email}
                 onChange={(e)=>setEmail(e.target.value)}/>

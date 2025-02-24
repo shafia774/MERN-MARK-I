@@ -5,7 +5,7 @@ import logo from '../assets/logo.svg';
 const Product = ({ product }) =>{
     return(
         <Card className='my-3 p-3 rounded'>
-            <Link to={`/product/${product._id}`}>
+            <Link to={`/product/view/${product._id}`}>
                 <Card.Img src={product.image || logo} variant='top' />
             </Link>
             <Card.Body>
